@@ -25,7 +25,7 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
     public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) throws AuthenticationException, IOException, ServletException {
         SignInRequest signInRequest = MAPPER.readValue(req.getReader(), SignInRequest.class);
 
-        final UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(signInRequest.getIdentification(), signInRequest.getPassword());
+        final UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(signInRequest.getEmail(), signInRequest.getPassword());
 
         return this.getAuthenticationManager().authenticate(token);
     }

@@ -7,13 +7,13 @@ import lombok.Getter;
 @Getter
 public class SignInRequest {
     @NotBlank
-    private String identification;
+    private String email;
     @NotBlank
     private String password;
 
     public SignInInput toInput() {
         SignInInput input = new SignInInput();
-        input.setIdentification(identification);
+        input.setEmail(email);
         input.setPassword(password);
 
         return input;

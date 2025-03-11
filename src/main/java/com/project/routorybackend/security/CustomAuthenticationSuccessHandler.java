@@ -40,8 +40,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         response.getWriter().write(objectMapper.writeValueAsString(responseEntity));
     }
 
-    private void setRefreshToken(HttpServletResponse response, String identification) {
-        ResponseCookie cookie = ResponseCookie.from("Refresh-Token", jwtTokenProvider.generateRefreshToken(identification))
+    private void setRefreshToken(HttpServletResponse response, String email) {
+        ResponseCookie cookie = ResponseCookie.from("Refresh-Token", jwtTokenProvider.generateRefreshToken(email))
                 .domain(cookieDomain)
                 .path("/")
                 .httpOnly(true)

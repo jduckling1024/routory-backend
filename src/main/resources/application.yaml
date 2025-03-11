@@ -13,7 +13,7 @@ spring:
         username: postgres
 
 app:
-    jwtSecret: secretkey
+    jwtSecret: secretkeysecretkeysecretkeysecretkeysecretkeysecretkeysecretkeysecretkey
 
 cookie:
     domain: localhost

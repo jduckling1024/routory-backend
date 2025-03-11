@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class SignInInput {
-    private String identification;
+    private String email;
     private String password;
 }
