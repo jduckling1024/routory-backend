@@ -16,7 +16,7 @@ public class Token {
     private Long idx;
 
     @Column(nullable = false)
-    private String identification;
+    private String email;
 
     private String refreshToken;
 }

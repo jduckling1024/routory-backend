@@ -16,9 +16,9 @@ import java.security.InvalidParameterException;
 public class TokenApiService {
     private final JwtTokenProvider jwtTokenProvider;
 
-    public CreateTokenResult createToken(String identification) {
-        final String accessToken = createAccessToken(identification);
-        final String refreshToken = createRefreshToken(identification);
+    public CreateTokenResult createToken(String email) {
+        final String accessToken = createAccessToken(email);
+        final String refreshToken = createRefreshToken(email);
 
         return new CreateTokenResult(accessToken, refreshToken);
     }
@@ -47,11 +47,11 @@ public class TokenApiService {
         }
     }
 
-    private String createAccessToken(String identification) {
-        return jwtTokenProvider.generateAccessToken(identification);
+    private String createAccessToken(String email) {
+        return jwtTokenProvider.generateAccessToken(email);
     }
 
-    private String createRefreshToken(String identification) {
-        return jwtTokenProvider.generateRefreshToken(identification);
+    private String createRefreshToken(String email) {
+        return jwtTokenProvider.generateRefreshToken(email);
     }
 }

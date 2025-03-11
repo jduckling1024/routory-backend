@@ -28,14 +28,14 @@ public class JwtTokenProvider {
     private final TokenRepository tokenRepository;
 
     // access token은 stateless
-    public String generateAccessToken(String identification) {
-        return doGenerateToken(identification, ACCESS_TOKEN_VALIDATION_SECOND);
+    public String generateAccessToken(String email) {
+        return doGenerateToken(email, ACCESS_TOKEN_VALIDATION_SECOND);
     }
 
-    public String generateRefreshToken(String identification) {
-        final String refreshToken = doGenerateToken(identification, REFRESH_TOKEN_VALIDATION_SECOND);
+    public String generateRefreshToken(String email) {
+        final String refreshToken = doGenerateToken(email, REFRESH_TOKEN_VALIDATION_SECOND);
         final Token token = Token.builder()
-                .identification(identification)
+                .email(email)
                 .refreshToken(refreshToken)
                 .build();
         tokenRepository.save(token);
@@ -48,8 +48,8 @@ public class JwtTokenProvider {
         extractAllClaims(token).setExpiration(new Date(expiration.getTime() + 1));
     }
 
-    public String getRefreshToken(String identification) {
-        final Token token = tokenRepository.findByIdentification(identification).orElse(null);
+    public String getRefreshToken(String email) {
+        final Token token = tokenRepository.findByEmail(email).orElse(null);
         return token != null ? token.getRefreshToken() : null;
     }
 

@@ -28,8 +28,8 @@ public class AccountApiService {
         return SignUpResult.from(account);
     }
 
-    private void checkEmailDuplication(String identification) {
-        if (accountQueryService.findByIdentification(identification).isPresent()) {
+    private void checkEmailDuplication(String email) {
+        if (accountQueryService.findByIdentification(email).isPresent()) {
             throw new ResourceAlreadyExistsException("이미 존재하는 회원입니다.");
         }
     }

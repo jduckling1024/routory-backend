@@ -33,10 +33,10 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setCharacterEncoding("UTF-8");
 
-        final String identification = authentication.getName();
-        setRefreshToken(response, identification);
+        final String email = authentication.getName();
+        setRefreshToken(response, email);
 
-        final ResponseEntity<SignInResponse> responseEntity = new ResponseEntity<>(new SignInResponse(jwtTokenProvider.generateAccessToken(identification)), HttpStatus.OK);
+        final ResponseEntity<SignInResponse> responseEntity = new ResponseEntity<>(new SignInResponse(jwtTokenProvider.generateAccessToken(email)), HttpStatus.OK);
         response.getWriter().write(objectMapper.writeValueAsString(responseEntity));
     }
 
