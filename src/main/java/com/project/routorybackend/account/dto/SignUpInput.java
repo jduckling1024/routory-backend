@@ -3,6 +3,8 @@ package com.project.routorybackend.account.dto;
 import com.project.routorybackend.account.model.Account;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 public class SignUpInput {
     private String email;
@@ -14,6 +16,7 @@ public class SignUpInput {
                 .email(email)
                 .password(password)
                 .name(name)
+                .createdDate(LocalDateTime.now())
                 .build();
     }
 }

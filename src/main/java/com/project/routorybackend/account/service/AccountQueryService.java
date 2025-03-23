@@ -13,6 +13,6 @@ public class AccountQueryService {
     private final AccountRepository accountRepository;
 
     public Optional<Account> findByIdentification(String email) {
-        return accountRepository.findByEmail(email);
+        return accountRepository.findByEmail(email); // 이거 맞나 싶은디
     }
 }

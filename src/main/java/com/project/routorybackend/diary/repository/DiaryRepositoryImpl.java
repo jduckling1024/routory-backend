@@ -10,15 +10,20 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
-class CustomDiaryRepositoryImpl implements CustomDiaryRepository {
+class DiaryRepositoryImpl implements DiaryRepository {
     private final ObjectMapper objectMapper;
     private final MongoTemplate mongoTemplate;
+
+    @Override
+    public Diary save(Diary diary) {
+        return mongoTemplate.save(diary);
+    }
 
     // TODO: 공통으로 빼기
     @Override
@@ -32,9 +37,11 @@ class CustomDiaryRepositoryImpl implements CustomDiaryRepository {
 
         fields.forEach(update::set);
 
-        // update date
-        update.set("updatedDate", LocalDateTime.now());
+        mongoTemplate.update(Diary.class).matching(query).apply(update).all();
+    }
 
-        mongoTemplate.updateFirst(query, update, Diary.class);
+    @Override
+    public Optional<Diary> findById(String id) {
+        return Optional.ofNullable(mongoTemplate.findById(id, Diary.class));
     }
 }
