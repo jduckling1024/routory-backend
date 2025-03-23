@@ -5,6 +5,7 @@ import com.project.routorybackend.diary.model.Emotion;
 import jakarta.validation.constraints.NotBlank;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * DTO for {@link com.project.routorybackend.diary.model.Diary}
@@ -15,6 +16,7 @@ public record CreateDiaryRequest(@NotBlank(message = "내용이 비어있습니�
         return Diary.builder()
                 .content(content)
                 .emotion(Emotion.valueOfWithDefault(emotion))
+                .createdDate(LocalDateTime.now())
                 .build();
     }
 }

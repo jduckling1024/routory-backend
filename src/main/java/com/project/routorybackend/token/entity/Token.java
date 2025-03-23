@@ -1,21 +1,18 @@
 package com.project.routorybackend.token.entity;
 
-import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-
-
-@Entity
 @Getter
 @Builder
 @AllArgsConstructor
+@Document(collation = "token")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Token {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idx;
+    private String id;
 
-    @Column(nullable = false)
     private String email;
 
     private String refreshToken;

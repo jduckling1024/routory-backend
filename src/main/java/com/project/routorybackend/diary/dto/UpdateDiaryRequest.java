@@ -5,6 +5,7 @@ import com.project.routorybackend.diary.model.Emotion;
 import jakarta.validation.constraints.NotBlank;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * DTO for {@link Diary}
@@ -16,6 +17,7 @@ public record UpdateDiaryRequest(@NotBlank String content,
                 .id(id)
                 .content(content)
                 .emotion(Emotion.valueOf(emotion))
+                .updatedDate(LocalDateTime.now())
                 .build();
     }
 }
