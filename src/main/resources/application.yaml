@@ -2,16 +2,6 @@ spring:
     application:
         name: routory-backend
 
-    jpa:
-        generate-ddl: true
-        database: postgresql
-        hibernate:
-            ddl-auto: update
-    datasource:
-        driver-class-name: org.postgresql.Driver
-        url: jdbc:postgresql://localhost:5432/routory
-        username: postgres
-
 app:
     jwtSecret: secretkeysecretkeysecretkeysecretkeysecretkeysecretkeysecretkeysecretkey
 
