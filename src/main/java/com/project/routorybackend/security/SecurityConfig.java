@@ -13,6 +13,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
+import org.springframework.security.web.authentication.AuthenticationFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.cors.CorsConfiguration;
@@ -26,6 +27,7 @@ import java.util.List;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig implements WebMvcConfigurer {
+    private final JwtAuthorizationFilter jwtAuthorizationFilter;
     private final CustomAuthenticationSuccessHandler authenticationSuccessHandler;
     private final CustomAuthenticationFailureHandler authenticationFailureHandler;
 
@@ -39,11 +41,12 @@ public class SecurityConfig implements WebMvcConfigurer {
         // 설정하지 않으면 Spring MVC의 CORS 구성을 사용한다.
         http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
 
-        http.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.POST, "/api/accounts/sign-up", "/api/accounts/sign-in").permitAll()
+        http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/**").permitAll()
                         .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                         .anyRequest().authenticated())
                 .authenticationManager(authenticationManager)
-                .addFilterBefore(customFilter(authenticationManager), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(customFilter(authenticationManager), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtAuthorizationFilter, AuthenticationFilter.class);
 
         return http.build();
     }
