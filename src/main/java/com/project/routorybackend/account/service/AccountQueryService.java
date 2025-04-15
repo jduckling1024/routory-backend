@@ -12,7 +12,7 @@ import java.util.Optional;
 public class AccountQueryService {
     private final AccountRepository accountRepository;
 
-    public Optional<Account> findByIdentification(String email) {
+    public Optional<Account> findByEmail(String email) {
         return accountRepository.findByEmail(email);
     }
 }

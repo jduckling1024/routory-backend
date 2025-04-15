@@ -29,7 +29,7 @@ public class AccountApiService {
     }
 
     private void checkEmailDuplication(String email) {
-        if (accountQueryService.findByIdentification(email).isPresent()) {
+        if (accountQueryService.findByEmail(email).isPresent()) {
             throw new ResourceAlreadyExistsException("이미 존재하는 회원입니다.");
         }
     }

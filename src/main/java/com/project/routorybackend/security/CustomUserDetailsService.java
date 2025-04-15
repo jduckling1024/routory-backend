@@ -20,7 +20,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) {
-        final Account account = accountQueryService.findByIdentification(email)
+        final Account account = accountQueryService.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("(email : %s) 유저를 찾을 수 없습니다", email)));
 
         return new AccountAdapter(account);

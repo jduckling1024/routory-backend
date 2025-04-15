@@ -54,7 +54,7 @@ public class JwtTokenProvider {
     }
 
     public String getAccountId(String token) {
-        return extractAllClaims(token).get("accountId", String.class);
+        return extractAllClaims(token).get("email", String.class);
     }
 
     /**
@@ -100,7 +100,7 @@ public class JwtTokenProvider {
      */
     private Claims extractAllClaims(String token) throws ExpiredJwtException {
         return Jwts.parserBuilder()
-                .setSigningKey(jwtSecret)
+                .setSigningKey(jwtSecret.getBytes())
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
@@ -113,8 +113,8 @@ public class JwtTokenProvider {
      * @return
      */
     public Authentication authenticate(String token) {
-        final String accountId = getAccountId(token);
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(accountId);
+        final String email = getAccountId(token);
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(email);
 
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }

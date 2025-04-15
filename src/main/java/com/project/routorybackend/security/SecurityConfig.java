@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -41,10 +42,13 @@ public class SecurityConfig implements WebMvcConfigurer {
         // 설정하지 않으면 Spring MVC의 CORS 구성을 사용한다.
         http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
 
-        http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/**").permitAll()
+        http.authorizeHttpRequests(auth -> auth
                         .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/diary").access(new CustomAuthorizationManager())
+                        .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
                         .anyRequest().authenticated())
                 .authenticationManager(authenticationManager)
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(customFilter(authenticationManager), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(jwtAuthorizationFilter, AuthenticationFilter.class);
 
