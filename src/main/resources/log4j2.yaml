@@ -11,7 +11,7 @@ Configuration:
       name: ConsoleLog
       target: SYSTEM_OUT
       PatternLayout:
-        pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%15.15t] %highlight{%-5level} %style{%-40.40logger{36}}{cyan} : %msg%n"
+        pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%15.15t] %highlight{%-5level} %style{%logger}{cyan} [%X{traceId}] : %msg%n"
 
     File:
       name: FileLog

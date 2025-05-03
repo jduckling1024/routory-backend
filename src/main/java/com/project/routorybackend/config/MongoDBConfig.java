@@ -24,6 +24,7 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Configuration
+@TraceIdLog
 @RequiredArgsConstructor
 public class MongoDBConfig extends AbstractMongoClientConfiguration {
     private final MongoProperties mongoProperties;
