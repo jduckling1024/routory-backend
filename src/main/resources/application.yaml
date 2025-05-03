@@ -1,9 +1,12 @@
 spring:
-    application:
-        name: routory-backend
+  application:
+    name: routory-backend
 
 app:
-    jwtSecret: secretkeysecretkeysecretkeysecretkeysecretkeysecretkeysecretkeysecretkey
+  jwtSecret: secretkeysecretkeysecretkeysecretkeysecretkeysecretkeysecretkeysecretkey
 
 cookie:
-    domain: localhost
+  domain: localhost
+
+logging:
+  config: classpath:log4j2.yaml

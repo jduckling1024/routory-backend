@@ -23,6 +23,9 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+
+    all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    all*.exclude group: 'org.springframework.boot', module: 'logback-classic'
 }
 
 repositories {
@@ -50,10 +53,16 @@ dependencies {
     // mongodb
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 
+    // aop
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+
     // jwt
     implementation "io.jsonwebtoken:jjwt-api:${jwtVersion}"
     implementation "io.jsonwebtoken:jjwt-impl:${jwtVersion}"
     implementation "io.jsonwebtoken:jjwt-jackson:${jwtVersion}"
+
+    // log4j2
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
 }
 
 tasks.named('test') {
