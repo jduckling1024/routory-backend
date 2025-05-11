@@ -1,6 +1,6 @@
 package com.project.routorybackend.account.service;
 
-import com.project.routorybackend.account.dto.SignUpInput;
+import com.project.routorybackend.account.dto.SignUpRequest;
 import com.project.routorybackend.account.dto.SignUpResult;
 import com.project.routorybackend.account.model.Account;
 import com.project.routorybackend.exception.ResourceAlreadyExistsException;
@@ -18,11 +18,11 @@ public class AccountApiService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public SignUpResult signUp(SignUpInput input) {
-        checkEmailDuplication(input.getEmail());
-        encodePassword(input);
+    public SignUpResult signUp(SignUpRequest request) {
+        checkEmailDuplication(request.getEmail());
+        encodePassword(request);
 
-        final Account account = input.toAccount();
+        final Account account = request.toAccount();
         accountCommandService.save(account);
 
         return SignUpResult.from(account);
@@ -34,7 +34,7 @@ public class AccountApiService {
         }
     }
 
-    private void encodePassword(SignUpInput input) {
-        input.setPassword(passwordEncoder.encode(input.getPassword()));
+    private void encodePassword(SignUpRequest request) {
+        request.setPassword(passwordEncoder.encode(request.getPassword()));
     }
 }
