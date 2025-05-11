@@ -3,6 +3,8 @@ package com.project.routorybackend.account.repository;
 import com.project.routorybackend.account.model.Account;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -14,7 +16,7 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public Optional<Account> findByEmail(String email) {
-        return Optional.ofNullable(mongoTemplate.findById(email, Account.class));
+        return Optional.ofNullable(mongoTemplate.findOne(new Query(Criteria.where("email").is(email)), Account.class));
     }
 
     @Override

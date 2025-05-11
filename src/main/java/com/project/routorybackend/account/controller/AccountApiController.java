@@ -21,7 +21,7 @@ public class AccountApiController {
 
     @PostMapping("/sign-up")
     public ResponseEntity<SignUpResponse> signUp(@Valid @RequestBody SignUpRequest request) {
-        final SignUpResult result = accountApiService.signUp(request.toInput());
+        final SignUpResult result = accountApiService.signUp(request);
         return new ResponseEntity<>(SignUpResponse.from(result), HttpStatus.CREATED);
     }
 }

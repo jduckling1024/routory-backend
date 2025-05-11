@@ -10,12 +10,4 @@ public class SignInRequest {
     private String email;
     @NotBlank
     private String password;
-
-    public SignInInput toInput() {
-        SignInInput input = new SignInInput();
-        input.setEmail(email);
-        input.setPassword(password);
-
-        return input;
-    }
 }
