@@ -6,10 +6,8 @@ import java.util.Set;
 public enum Emotion {
     HAPPY, // 행복
     SAD, // 슬픔
-    ANGRY, // 화남
-    STRESSED, // 스트레스
-    EXCITED, // 흥분
-    RELAXED, // 편안
+    ANGRY, // 분노
+    CALM, // 평온
     TIRED, // 피곤
     UNDEFINED; // 정의되지 않은 감정
 
