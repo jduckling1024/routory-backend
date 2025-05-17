@@ -29,8 +29,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SecurityConfig implements WebMvcConfigurer {
     private final JwtAuthorizationFilter jwtAuthorizationFilter;
+    // 인증 성공, 실패 handler
     private final CustomAuthenticationSuccessHandler authenticationSuccessHandler;
     private final CustomAuthenticationFailureHandler authenticationFailureHandler;
+
+    // 401, 403 error handler
+    private final CustomAccessDeniedHandler customAccessDeniedHandler;
+    private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -52,6 +57,11 @@ public class SecurityConfig implements WebMvcConfigurer {
                 .authenticationManager(authenticationManager)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterAt(customFilter(authenticationManager), UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling(exception -> {
+                    exception
+                            .authenticationEntryPoint(customAuthenticationEntryPoint)
+                            .accessDeniedHandler(customAccessDeniedHandler);
+                })
                 .addFilterBefore(jwtAuthorizationFilter, AuthorizationFilter.class);
 
         return http.build();
