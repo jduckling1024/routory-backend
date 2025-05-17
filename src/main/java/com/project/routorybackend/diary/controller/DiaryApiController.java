@@ -1,7 +1,9 @@
 package com.project.routorybackend.diary.controller;
 
+import com.project.routorybackend.account.model.Account;
 import com.project.routorybackend.diary.dto.*;
 import com.project.routorybackend.diary.service.DiaryApiService;
+import com.project.routorybackend.security.CustomAuthenticationPrincipal;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +16,10 @@ public class DiaryApiController {
     private final DiaryApiService diaryApiService;
 
     @PostMapping
-    public ResponseEntity<CreateDiaryResponse> save(@Valid @RequestBody CreateDiaryRequest request) {
-        final String id = diaryApiService.save(request);
+    public ResponseEntity<CreateDiaryResponse> save(
+            @CustomAuthenticationPrincipal Account account,
+            @Valid @RequestBody CreateDiaryRequest request) {
+        final String id = diaryApiService.save(request, account);
         return ResponseEntity.ok(new CreateDiaryResponse(id));
     }
 

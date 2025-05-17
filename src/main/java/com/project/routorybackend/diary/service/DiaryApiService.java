@@ -1,5 +1,6 @@
 package com.project.routorybackend.diary.service;
 
+import com.project.routorybackend.account.model.Account;
 import com.project.routorybackend.diary.dto.CreateDiaryRequest;
 import com.project.routorybackend.diary.dto.ReadOneDiaryResponse;
 import com.project.routorybackend.diary.dto.UpdateDiaryRequest;
@@ -13,8 +14,8 @@ public class DiaryApiService {
     private final DiaryCommandService diaryCommandService;
     private final DiaryQueryService diaryQueryService;
 
-    public String save(CreateDiaryRequest request) {
-        return diaryCommandService.save(request.toDiary());
+    public String save(CreateDiaryRequest request, Account account) {
+        return diaryCommandService.save(request.toDiary(account));
     }
 
     public ReadOneDiaryResponse readOne(String id) {
