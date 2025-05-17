@@ -1,4 +1,4 @@
-package com.project.routorybackend.security;
+package com.project.routorybackend.security.userdetails;
 
 import com.project.routorybackend.account.model.Account;
 import lombok.Getter;

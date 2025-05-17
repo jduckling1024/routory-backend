@@ -1,4 +1,4 @@
-package com.project.routorybackend.security;
+package com.project.routorybackend.security.authorization;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authorization.AuthorizationDecision;

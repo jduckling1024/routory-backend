@@ -1,7 +1,8 @@
-package com.project.routorybackend.security;
+package com.project.routorybackend.security.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.routorybackend.account.dto.SignInResponse;
+import com.project.routorybackend.security.authorization.JwtTokenProvider;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

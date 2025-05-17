@@ -1,4 +1,4 @@
-package com.project.routorybackend.security;
+package com.project.routorybackend.security.authorization;
 
 import com.project.routorybackend.token.entity.Token;
 import com.project.routorybackend.token.repository.TokenRepository;

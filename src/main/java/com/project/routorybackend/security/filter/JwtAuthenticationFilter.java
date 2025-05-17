@@ -1,4 +1,4 @@
-package com.project.routorybackend.security;
+package com.project.routorybackend.security.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.routorybackend.account.dto.SignInRequest;

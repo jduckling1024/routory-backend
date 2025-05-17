@@ -1,4 +1,4 @@
-package com.project.routorybackend.security;
+package com.project.routorybackend.security.userdetails;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 

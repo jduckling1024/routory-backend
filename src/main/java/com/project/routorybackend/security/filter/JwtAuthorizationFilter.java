@@ -1,5 +1,6 @@
-package com.project.routorybackend.security;
+package com.project.routorybackend.security.filter;
 
+import com.project.routorybackend.security.authorization.JwtTokenProvider;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

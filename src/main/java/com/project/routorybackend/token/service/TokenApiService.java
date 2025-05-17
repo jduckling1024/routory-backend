@@ -1,6 +1,6 @@
 package com.project.routorybackend.token.service;
 
-import com.project.routorybackend.security.JwtTokenProvider;
+import com.project.routorybackend.security.authorization.JwtTokenProvider;
 import com.project.routorybackend.token.dto.CreateTokenResult;
 import com.project.routorybackend.token.dto.ReIssueResult;
 import lombok.RequiredArgsConstructor;

@@ -3,7 +3,7 @@ package com.project.routorybackend.diary.controller;
 import com.project.routorybackend.account.model.Account;
 import com.project.routorybackend.diary.dto.*;
 import com.project.routorybackend.diary.service.DiaryApiService;
-import com.project.routorybackend.security.CustomAuthenticationPrincipal;
+import com.project.routorybackend.security.userdetails.CustomAuthenticationPrincipal;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
