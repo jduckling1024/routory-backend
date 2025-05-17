@@ -38,8 +38,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         final String email = authentication.getName();
         setRefreshToken(response, email);
 
-        final ResponseEntity<SignInResponse> responseEntity = new ResponseEntity<>(new SignInResponse(jwtTokenProvider.generateAccessToken(email)), HttpStatus.OK);
-        response.getWriter().write(objectMapper.writeValueAsString(responseEntity));
+        response.getWriter().write(objectMapper.writeValueAsString(new SignInResponse(jwtTokenProvider.generateAccessToken(email))));
     }
 
     private void setRefreshToken(HttpServletResponse response, String email) {
